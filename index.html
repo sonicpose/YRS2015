@@ -99,7 +99,7 @@ var greenIcon = L.icon({
 });
 L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
 function onMapClick(e) {
-   L.marker([e.latlng], {icon: greenIcon}).addTo(map);
+   L.marker([e.lat, e.lng], {icon: greenIcon}).addTo(map);
 }
 
 map.on('click', onMapClick);
