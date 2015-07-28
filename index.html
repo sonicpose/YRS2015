@@ -20,13 +20,7 @@ height:700px;
 width:700px;
 margin:auto;
 } 
-#button {
- height:300px;
- width:300px;
- background-color:purple;
- margin-bottom:300px;
- margin-left:50px;
-}
+
 </style>
 </head>
 
@@ -92,7 +86,6 @@ margin:auto;
 <video href:"yrswhylearntocode.mp4"></video>
 <!--End of Video-->
 
-<div id="button" onClick="var marker = L.marker([51.5, 0]).addTo(map);"></div>
 
 <script type="text/javascript">
 var map = L.map('map').setView([51.505, -0.09], 13);
@@ -109,7 +102,10 @@ var greenIcon = L.icon({
 });
 L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
 function onMapClick(e) {
-    var marker = L.marker([e.latlng]).addTo(map);
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
 }
 
 map.on('click', onMapClick);
