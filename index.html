@@ -1,10 +1,9 @@
 <html>
-<script type="text/javascript">
 
-</script>
 <head>
 <title>Prewired Project Hub</title>
-
+<link rel="stylesheet" href="leaflet.css" />
+ <script src="leaflet.js"></script>
 <script src="jquery/jquery.min.js"></script>
 
 <!-- Latest compiled and minified CSS -->
@@ -15,11 +14,15 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-
-</head>
 <style type="text/css">
-
+#map {
+height:700px;
+width:700px;
+margin:auto;
+} 
 </style>
+</head>
+
 <body>
 <!--Start of Narbar-->
 <nav class="navbar navbar-default" role="navigation">
@@ -76,8 +79,17 @@
   </div><!-- /.container-fluid -->
 </nav>
 <!--End of Narbar-->
+
 <!--Start of Video-->
+ <div id="map"></div>
 <video href:"yrswhylearntocode.mp4"></video>
 <!--End of Video-->
+<script type="text/javascript">
+var map = L.map('map').setView([51.505, -0.09], 13);
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+</script>
+
 </body>
 </html>
