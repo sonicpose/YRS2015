@@ -87,6 +87,7 @@ color:pink;
 <!--End of Narbar-->
 <div id="button" class="bon"><p>Display Trees</p></div>
 <div id="button2" class="bon"><p>Display Libraries</p></div>
+<div id="button3" class="bon"><p>Display Parks and gardens</p></div>
 <!--Start of Video-->
  <div id="map"></div>
 <video href:"yrswhylearntocode.mp4"></video>
@@ -117,6 +118,13 @@ var tree = L.icon({
 });
 var library = L.icon({
     iconUrl: 'Book.png',
+
+    iconSize:     [38, 95], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+var park = L.icon({
+    iconUrl: 'Park.png',
 
     iconSize:     [38, 95], // size of the icon
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -165,6 +173,23 @@ map.on('click', onMapClick);
   });
   });
   
+  $("#button3").click(function(){
+    Papa.parse("http://www.edinburghopendata.info/dataset/4e180544-e422-49e2-bb4d-afa7943ab839/resource/1b18138d-f3a1-4bf7-9e45-4579f73dca1b/download/parksandgardens.csv", {
+    download: true,
+    complete: function(results) {
+      console.log("ended:", results.data);
+      for(i=1;i<results.data.length;i++){
+        var parkdata = results.data[i];
+        var location3 = parkdata[22];
+        console.log(location3);
+        var locationSplit3 = location3.split(",");
+        console.log(locationSplit3);
+        console.log(parkdata[0]);
+        L.marker(locationSplit3, {icon: library}).addTo(map).bindPopup(parkdata[1]);
+      }
+    }
+  });
+  });
   
 </script>
 
