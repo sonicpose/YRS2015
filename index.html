@@ -140,7 +140,8 @@ map.on('click', onMapClick);
         console.log(location);
         var locationSplit = location.split(",");
         console.log(locationSplit);
-        L.marker(locationSplit, {icon: tree}).addTo(map);
+        console.log(treedata[0]);
+        L.marker(locationSplit, {icon: tree}).addTo(map).bindPopup(treedata[0]);
       }
     }
   });
