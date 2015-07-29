@@ -108,7 +108,7 @@ var greenIcon = L.icon({
 });
 
 var tree = L.icon({
-    iconUrl: 'Shiny Paint Tree.png',
+    iconUrl: 'Tree.png',
 
     iconSize:     [38, 95], // size of the icon
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -122,10 +122,7 @@ function onMapClick(e) {
 map.on('click', onMapClick);
 
   $("#button").click(function(){
-    alert("Hello,world");
-  });
-  
-  Papa.parse("http://www.edinburghopendata.info/dataset/8f46d456-3115-41f0-bef5-f45de1909608/resource/e61ee62b-e58a-413b-8079-f9b3ee4e219a/download/edinburghstreeswithastory.csv", {
+    Papa.parse("http://www.edinburghopendata.info/dataset/8f46d456-3115-41f0-bef5-f45de1909608/resource/e61ee62b-e58a-413b-8079-f9b3ee4e219a/download/edinburghstreeswithastory.csv", {
     download: true,
     complete: function(results) {
       console.log("ended:", results.data);
@@ -139,6 +136,9 @@ map.on('click', onMapClick);
       }
     }
   });
+  });
+  
+  
 </script>
 
 </body>
