@@ -138,7 +138,8 @@ map.on('click', onMapClick);
   });
   });
   
-  
+map.addControl( new L.Control.Search({layer: searchLayer}) );
+//searchLayer is a L.LayerGroup contains searched markers
 </script>
 
 </body>
