@@ -185,7 +185,7 @@ function onMapClick(e) {
 }
 
 map.on('click', onMapClick);
-
+var StrArray = 0
   $("#button").click(function(){
     Papa.parse("http://www.edinburghopendata.info/dataset/8f46d456-3115-41f0-bef5-f45de1909608/resource/e61ee62b-e58a-413b-8079-f9b3ee4e219a/download/edinburghstreeswithastory.csv", {
     download: true,
@@ -209,6 +209,7 @@ map.on('click', onMapClick);
     download: true,
     complete: function(results) {
       console.log("ended:", results.data);
+      StrArray = results.data;
       for(i=1;i<results.data.length;i++){
         var libdata = results.data[i];
         var location2 = libdata[19];
@@ -304,7 +305,6 @@ map.on('click', onMapClick);
 //    }
 //    return -1;
 //}
-    
 //    map.addControl( new L.Control.Search({layer: searchLayer}) );
 //searchLayer is a L.LayerGroup contains searched markers
 //}).addTo(map);
@@ -316,9 +316,9 @@ function searchStringInArray (str, strArray) {
     return -1;
 }
 
-markers[0].setMap(null);
+j[0].setMap(null);
 
-markers[markers.length-1].setMap(null);
+j[j.length-1].setMap(null);
 
 </script>
 
