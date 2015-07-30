@@ -273,11 +273,11 @@ var StrArray = 0
       console.log("ended:", results.data);
       for(i=1;i<results.data.length;i++){
         var schooldata = results.data[i];
-        var location5 = schooldata[18];
+        var location5 = schooldata[17];
         console.log(location5);
         var locationSplit5 = location5.split(",");
         console.log(locationSplit5);
-        console.log(commundata[1]);
+        console.log(schooldata[1]);
         L.marker(locationSplit5, {icon: school}).addTo(map).bindPopup(schooldata[1]);
       }
     }
