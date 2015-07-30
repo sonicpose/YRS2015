@@ -88,6 +88,7 @@ color:pink;
 <div id="button" class="bon"><p>Display Trees</p></div>
 <div id="button2" class="bon"><p>Display Libraries</p></div>
 <div id="button3" class="bon"><p>Display Parks and gardens</p></div>
+<div id="button4" class="bon"><p>Display Allotments</p></div>
 <!--Start of Video-->
  <div id="map"></div>
 <video href:"yrswhylearntocode.mp4"></video>
@@ -186,6 +187,24 @@ map.on('click', onMapClick);
         console.log(locationSplit3);
         console.log(parkdata[1]);
         L.marker(locationSplit3, {icon: park}).addTo(map).bindPopup(parkdata[1]);
+      }
+    }
+  });
+  });
+
+  $("#button4").click(function(){
+    Papa.parse("http://edinburghopendata.info/dataset/1ac35c26-6be7-454a-8e86-b27362edd58c/resource/61f4c674-ea65-4cde-b8fd-dd1f103ee4e0/download/allotments.csv", {
+    download: true,
+    complete: function(results) {
+      console.log("ended:", results.data);
+      for(i=1;i<results.data.length;i++){
+        var allotdata = results.data[i];
+        var location4 = allotdata[11];
+        console.log(location4);
+        var locationSplit4 = location4.split(",");
+        console.log(locationSplit4);
+        console.log(allotdata[1]);
+        L.marker(locationSplit4, {icon: allotment}).addTo(map).bindPopup(allotdata[1]);
       }
     }
   });
