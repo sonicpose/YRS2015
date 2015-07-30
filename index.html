@@ -88,7 +88,7 @@ color:pink;
 <div id="button" class="bon"><p>Display Trees</p></div>
 <div id="button2" class="bon"><p>Display Libraries</p></div>
 <div id="button3" class="bon"><p>Display Parks and gardens</p></div>
-<div id="button4" class="bon"><p>Display Allotments</p></div>
+<div id="button4" class="bon"><p>Display Community Centres</p></div>
 <!--Start of Video-->
  <div id="map"></div>
 <video href:"yrswhylearntocode.mp4"></video>
@@ -131,6 +131,14 @@ var park = L.icon({
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
+var centre = L.icon({
+    iconUrl: 'Centre.png',
+
+    iconSize:     [38, 95], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
 function onMapClick(e) {
     console.log(e.latlng);
     var marker = L.marker([e.latlng.lat, e.latlng.lng], {icon: greenIcon}).addTo(map);
@@ -193,18 +201,18 @@ map.on('click', onMapClick);
   });
 
   $("#button4").click(function(){
-    Papa.parse("http://edinburghopendata.info/dataset/1ac35c26-6be7-454a-8e86-b27362edd58c/resource/61f4c674-ea65-4cde-b8fd-dd1f103ee4e0/download/allotments.csv", {
+    Papa.parse("http://edinburghopendata.info/dataset/88d7645f-bcb7-4be7-a890-a134a9618caf/resource/22cc8d6e-e139-4a9a-8bed-63270e94db4f/download/communitycentres.csv", {
     download: true,
     complete: function(results) {
       console.log("ended:", results.data);
       for(i=1;i<results.data.length;i++){
-        var allotdata = results.data[i];
-        var location4 = allotdata[11];
+        var commundata = results.data[i];
+        var location4 = commundata[15];
         console.log(location4);
         var locationSplit4 = location4.split(",");
         console.log(locationSplit4);
-        console.log(allotdata[1]);
-        L.marker(locationSplit4, {icon: allotment}).addTo(map).bindPopup(allotdata[1]);
+        console.log(commundata[1]);
+        L.marker(locationSplit4, {icon: centre}).addTo(map).bindPopup(commundata[0],commundata[1]);
       }
     }
   });
