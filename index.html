@@ -223,6 +223,69 @@ map.on('click', onMapClick);
     }
   });
   });
+  
+
+//map.addControl( new L.Control.Search({layer: searchLayer}) );
+//searchLayer is a L.LayerGroup contains searched markers
+//
+//var geocoder = new google.maps.Geocoder();
+//
+//	function googleGeocoding(text, callResponse)
+//	{
+//		geocoder.geocode({address: text}, callResponse);
+//	}
+//
+//	function filterJSONCall(rawjson)
+//	{
+//		var json = {},
+//			key, loc, disp = [];
+//
+//		for(var i in rawjson)
+//		{
+//			key = rawjson[i].formatted_address;
+//			
+//			loc = L.latLng( rawjson[i].geometry.location.lat(), rawjson[i].geometry.location.lng() );
+//			
+//			json[ key ]= loc;	//key,value format
+//		}
+//
+//		return json;
+//	}
+
+//	map.addControl( new L.Control.Search({
+//			callData: googleGeocoding,
+//			filterJSON: filterJSONCall,
+//			markerLocation: true,
+//			autoType: false,
+//			autoCollapse: true,
+//			minLength: 2,
+//			zoom: 10
+//		}) );
+		
+//		function searchStringInArray (str, strArray) {
+//    for (var j=0; j<strArray.length; j++) {
+//        if (strArray[j].match(str)) return j;
+//    }
+//    return -1;
+//}
+
+
+
+    
+//    map.addControl( new L.Control.Search({layer: searchLayer}) );
+//searchLayer is a L.LayerGroup contains searched markers
+//}).addTo(map);
+
+function searchStringInArray (str, strArray) {
+    for (var j=0; j<strArray.length; j++) {
+        if (strArray[j].match(str)) return j;
+    }
+    return -1;
+}
+
+markers[0].setMap(null);
+
+markers[markers.length-1].setMap(null);
 
 
 </script>
