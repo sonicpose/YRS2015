@@ -166,7 +166,7 @@ map.on('click', onMapClick);
         console.log(location2);
         var locationSplit2 = location2.split(",");
         console.log(locationSplit2);
-        console.log(libdata[0]);
+        console.log(libdata[1]);
         L.marker(locationSplit2, {icon: library}).addTo(map).bindPopup(libdata[1]);
       }
     }
@@ -184,8 +184,8 @@ map.on('click', onMapClick);
         console.log(location3);
         var locationSplit3 = location3.split(",");
         console.log(locationSplit3);
-        console.log(parkdata[0]);
-        L.marker(locationSplit3, {icon: park}).addTo(map).bindPopup(parkdata[2]);
+        console.log(parkdata[1]);
+        L.marker(locationSplit3, {icon: park}).addTo(map).bindPopup(parkdata[1]);
       }
     }
   });
