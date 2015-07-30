@@ -130,7 +130,6 @@ ul:hover {
 <div id="button3"></div>
 <div id="button4" class="bon"><p>Display Community Centres</p></div>
 <div id="button5" class="bon"><p>Display Schools</p></div>
-<div id="button6" class="bon"><p>Display Museums and Galleries</p></div>
 <!--Start of Video-->
  <div id="map"></div>
 <video href:"yrswhylearntocode.mp4"></video>
@@ -187,19 +186,11 @@ var school = L.icon({
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
-var museum = L.icon({
-    iconUrl: 'Mueseum.png',
-
-    iconSize:     [38, 95], // size of the icon
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
-
 
 function onMapClick(e) {
     console.log(e.latlng);
     var marker = L.marker([e.latlng.lat, e.latlng.lng], {icon: greenIcon}).addTo(map);
-};
+}
 
 map.on('click', onMapClick);
 var StrArray = 0
@@ -275,7 +266,6 @@ var StrArray = 0
     }
   });
   });
-
   $("#button5").click(function(){
     Papa.parse("http://www.edinburghopendata.info/dataset/c9785e59-1793-491a-87c8-4feed0b5793c/resource/67a3dcd8-d48f-416c-902c-3dcfd153b5be/download/primaryschools.csv", {
     download: true,
@@ -289,24 +279,6 @@ var StrArray = 0
         console.log(locationSplit5);
         console.log(schooldata[0]);
         L.marker(locationSplit5, {icon: school}).addTo(map).bindPopup(schooldata[0]);
-      }
-    }
-  });
-  });
-
-  $("#button6").click(function(){
-    Papa.parse("http://www.edinburghopendata.info/dataset/b9bbdd17-d9d6-4f95-a996-21dc8993361f/resource/893d398c-5d07-4bb1-b73c-7d4187e0c4d7/download/museumsandgalleries.csv", {
-    download: true,
-    complete: function(results) {
-      console.log("ended:", results.data);
-      for(i=1;i<results.data.length;i++){
-        var musdata = results.data[i];
-        var location6 = musdata[8];
-        console.log(location6);
-        var locationSplit6 = location6.split(",");
-        console.log(locationSplit6);
-        console.log(musdata[0]);
-        L.marker(locationSplit6, {icon: museum}).addTo(map).bindPopup(musdata[0]);
       }
     }
   });
