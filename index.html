@@ -50,7 +50,7 @@ height:700px;
 width:700px;
 margin:auto;
 border-radius:100px;
-margin-top:-360px;
+margin-top:-700px;
 } 
 body {
  background-image: url(http://www.torange.us/photo/24/16/green-carpet-1385020309_75.jpg);
@@ -129,8 +129,12 @@ ul:hover {
 <div id="button2" class="bon"><p>Display Libraries</p></div>
 <div id="button3"></div>
 <div id="button4" class="bon"><p>Display Community Centres</p></div>
-<div id="button5" class="bon"><p>Display Schools</p></div>
+<div id="button5" class="bon"><p>Display Primary Schools</p></div>
 <div id="button6" class="bon"><p>Display Museums and Galleries</p></div>
+<div id="button7" class="bon"><p>Display Play Areas</p></div>
+<!--DON'T UNCOMMENT THE LINE BELOW THIS ONE!!!! IT IS A WIP, SO LEAVE IT ALONE!!!-->
+<!--<div id="button8" class="bon"><p>Display Secondary Schools</p></div>-->
+
 <!--Start of Video-->
  <div id="map"></div>
 <video href:"yrswhylearntocode.mp4"></video>
@@ -187,7 +191,6 @@ var school = L.icon({
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
-
 var museum = L.icon({
     iconUrl: 'Mueseum.png',
 
@@ -195,6 +198,21 @@ var museum = L.icon({
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
+var play = L.icon({
+    iconUrl: 'Climbing_Frame.png',
+
+    iconSize:     [38, 95], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+var secondary = L.icon({
+    iconUrl: 'Secondary.png',
+
+    iconSize:     [38, 95], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
 
 
 
@@ -314,6 +332,43 @@ var StrArray = 0
     }
   });
   });
+
+   $("#button7").click(function(){
+    Papa.parse("http://www.edinburghopendata.info/dataset/a22a4332-b73f-4477-834c-76d22ed8f993/resource/f831dda3-9abd-4370-be27-0998f7e8e2af/download/playareas.csv", {
+    download: true,
+    complete: function(results) {
+      console.log("ended:", results.data);
+      for(i=1;i<results.data.length;i++){
+        var playdata = results.data[i];
+        var location7 = playdata[5];
+        console.log(location7);
+        var locationSplit7 = location7.split(",");
+        console.log(locationSplit7);
+        console.log(playdata[0]);
+        L.marker(locationSplit7, {icon: play}).addTo(map).bindPopup(playdata[0]);
+      }
+    }
+  });
+  });
+
+   $("#button8").click(function(){
+    Papa.parse("http://edinburghopendata.info/dataset/c9785e59-1793-491a-87c8-4feed0b5793c/resource/b0a25cd8-5e99-44b4-96b9-c9cb114aeafc/download/secondaryschools.csv", {
+    download: true,
+    complete: function(results) {
+      console.log("ended:", results.data);
+      for(i=1;i<results.data.length;i++){
+        var school2data = results.data[i];
+        var location8 = school2data[16];
+        console.log(location8);
+        var locationSplit8 = location8.split(",");
+        console.log(locationSplit8);
+        console.log(school2data[0]);
+        L.marker(locationSplit8, {icon: secondary}).addTo(map).bindPopup(school2data[0]);
+      }
+    }
+  });
+  });
+
   
 
 // Search code
