@@ -132,8 +132,7 @@ ul:hover {
 <div id="button5" class="bon"><p>Display Primary Schools</p></div>
 <div id="button6" class="bon"><p>Display Museums and Galleries</p></div>
 <div id="button7" class="bon"><p>Display Play Areas</p></div>
-<!--DON'T UNCOMMENT THE LINE BELOW THIS ONE!!!! IT IS A WIP, SO LEAVE IT ALONE!!!-->
-<!--<div id="button8" class="bon"><p>Display Secondary Schools</p></div>-->
+<div id="button8" class="bon"><p>Display Leisure Centres</p></div>
 
 <!--Start of Video-->
  <div id="map"></div>
@@ -212,6 +211,14 @@ var secondary = L.icon({
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
+var lesuire = L.icon({
+    iconUrl: 'Building.png',
+
+    iconSize:     [38, 95], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
 
 
 
@@ -352,23 +359,26 @@ var StrArray = 0
   });
 
    $("#button8").click(function(){
-    Papa.parse("http://edinburghopendata.info/dataset/c9785e59-1793-491a-87c8-4feed0b5793c/resource/b0a25cd8-5e99-44b4-96b9-c9cb114aeafc/download/secondaryschools.csv", {
+    Papa.parse("http://edinburghopendata.info/dataset/d790715c-5f89-44bf-ba66-ec33e220ce1c/resource/d7374455-86fd-420b-bc30-e37b5b7bb964/download/edinburghcouncilleisurefacilities.csv", {
     download: true,
     complete: function(results) {
       console.log("ended:", results.data);
       for(i=1;i<results.data.length;i++){
-        var school2data = results.data[i];
-        var location8 = school2data[16];
+        var lesdata = results.data[i];
+        var location8 = lesdata[11];
         console.log(location8);
         var locationSplit8 = location8.split(",");
         console.log(locationSplit8);
-        console.log(school2data[0]);
-        L.marker(locationSplit8, {icon: secondary}).addTo(map).bindPopup(school2data[0]);
+        console.log(lesdata[0]);
+        L.marker(locationSplit8, {icon: lesuire}).addTo(map).bindPopup(lesdata[0]);
       }
     }
   });
   });
 
+  
+
+   
   
 
 // Search code
