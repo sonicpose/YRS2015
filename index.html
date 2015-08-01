@@ -133,6 +133,7 @@ ul:hover {
 <div id="button6" class="bon"><p>Display Museums and Galleries</p></div>
 <div id="button7" class="bon"><p>Display Play Areas</p></div>
 <div id="button8" class="bon"><p>Display Leisure Centres</p></div>
+<div id="button9" class="bon"><p>Display Cemeteries</p></div>
 
 <!--Start of Video-->
  <div id="map"></div>
@@ -218,7 +219,13 @@ var lesuire = L.icon({
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
+var cemet = L.icon({
+    iconUrl: 'Toomb.png',
 
+    iconSize:     [38, 95], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
 
 
 
@@ -371,6 +378,24 @@ var StrArray = 0
         console.log(locationSplit8);
         console.log(lesdata[0]);
         L.marker(locationSplit8, {icon: lesuire}).addTo(map).bindPopup(lesdata[0]);
+      }
+    }
+  });
+  });
+
+   $("#button9").click(function(){
+    Papa.parse("http://edinburghopendata.info/dataset/1e3da330-9563-4ceb-90ec-c9956205dd84/resource/083cc3f0-030c-4600-ac02-b6de1478bc22/download/cemeteriesandcrematoria.csv", {
+    download: true,
+    complete: function(results) {
+      console.log("ended:", results.data);
+      for(i=1;i<results.data.length;i++){
+        var cemdata = results.data[i];
+        var location9 = cemdata[8];
+        console.log(location9);
+        var locationSplit9 = location9.split(",");
+        console.log(locationSplit9);
+        console.log(cemdata[0]);
+        L.marker(locationSplit9, {icon: cemet}).addTo(map).bindPopup(cemdata[0]);
       }
     }
   });
